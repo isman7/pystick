@@ -16,7 +16,6 @@ I have made two script to easy deal with some image packages to made them Telegr
 
 ## Future implementations
 
-- More 
 - Better app structure, not script.
-- Better *emoji* implementation. **Now, are images are packaged into the same *emoji*. **
+- Better *emoji* implementation. **Now, are images are packaged into the same emoji. **
 - Python3?
