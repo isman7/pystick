@@ -14,7 +14,7 @@ from scipy.misc import imresize
 
 matches = []
 
-dirname = str(raw_input("Input the image to resize folder path: "))
+dirname = str(raw_input("Input the image-to-resize folder path: "))
 
 try: 
 

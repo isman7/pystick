@@ -37,7 +37,7 @@ publish = u'/publish'
 
 matches = []
 
-dirname = str(raw_input("Introduce la dirección de la carpeta que contiene los stickers: "))
+dirname = str(raw_input("Input folder with 512x512 fited .png images path: "))
 
 try: 
 
