@@ -1,0 +1,4 @@
+tg.target=	Sticker_Bot
+tg.srvpub=	./tg/tg-server.pub
+tg.emoji=	24C2
+tg.Path=	./tg/bin/telegram-cli
