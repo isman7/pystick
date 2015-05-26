@@ -9,26 +9,47 @@ import os
 import fnmatch
 from pylab import *
 from scipy.misc import imresize
-from pytg import Telegram
+
 
 
 def readConfig():
     
     config = {}
     
+    try: 
+        
+        configFile = open('./config.txt')
+        configStr = configFile.read()        
+        configFile.close()
+        
+        optionLines = configStr.split('\n')
+        for line in optionLines:
+            option = line.split('=\t')        
+            if len(option) == 2:             
+                config[option[0]] = option[1]
+            
+        return config
     
-    return config
+    except IOError:
+        print "Config file not found"    
+        return -1    
 
-def writeConfig():
+def writeConfig(config):
+    
+    try:
+        
+        configFile = open('./config.txt', 'w')        
+        for option, value in config.iteritems():
+            #print option+'=\t'+value            
+            configFile.writelines(option+'=\t'+value+'\n')
+        configFile.close()        
+        return 1
+    except IOError: 
+        print "Config file not found"        
+        return -1        
     
     
-    config = {}
-    
-    return config
-
-
-
-def resizefolder(folderPath):
+def resizeFolder(folderPath):
     
     try: 
         for root, dirnames, filenames in os.walk(folderPath):
@@ -67,14 +88,6 @@ def resizefolder(folderPath):
             new_sticker = imresize(sticker, new_stshape)
             imsave(stickers, new_sticker)
             
-def telegram_init():
 
-    #### Telegram object declaration ####
-    
-    
-    
-    tg = Telegram(telegram="../tg/bin/telegram-cli", pubkey_file="../tg/tg-server.pub")
-    
-    return tg
 
     
