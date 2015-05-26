@@ -9,6 +9,24 @@ import os
 import fnmatch
 from pylab import *
 from scipy.misc import imresize
+from pytg import Telegram
+
+
+def readConfig():
+    
+    config = {}
+    
+    
+    return config
+
+def writeConfig():
+    
+    
+    config = {}
+    
+    return config
+
+
 
 def resizefolder(folderPath):
     
@@ -47,4 +65,16 @@ def resizefolder(folderPath):
             
             new_stshape = (512, 512, stshape[2])        
             new_sticker = imresize(sticker, new_stshape)
-            imsave(stickers, new_sticker )
+            imsave(stickers, new_sticker)
+            
+def telegram_init():
+
+    #### Telegram object declaration ####
+    
+    
+    
+    tg = Telegram(telegram="../tg/bin/telegram-cli", pubkey_file="../tg/tg-server.pub")
+    
+    return tg
+
+    
