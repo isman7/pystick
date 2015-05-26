@@ -10,38 +10,33 @@ Created on Sun May 24 16:37:29 2015
 import os
 import fnmatch
 from pytg import Telegram
+import pysticklib as ps
 
+#### Loading config ####
+
+config = ps.readConfig()
+
+#### Treating images #### 
+
+if 'stickers.path' in config: 
+    ps.resizeFolder(config['stickers.path'])
+    
 #### Telegram object declaration ####
-# You should modify to find the correct path. 
+
 tg = Telegram(
-    telegram="../tg/bin/telegram-cli",
-    pubkey_file="../tg/tg-server.pub")
-
-
-receiver = tg.receiver
+    telegram=config['tg.Path'],
+    pubkey_file=config['tg.srvpub'])
 sender = tg.sender
-
-#### Sticker Bot Commands ####
-# You should modify to point the correct Bot name, but it is supposed to be the same. 
-stickerbot = u'Stickers_Bot'
-
-newpack = u'/newstickerpack'
-addsticker = u'/addsticker'
-delsticker = u'/delsticker'
-ordersticker= u'/ordersticker'
-candel = u'/cancel'
-publish = u'/publish'
-
 
 #### Folder scanning ####
 
 matches = []
 
-dirname = str(raw_input("Input folder with 512x512 fited .png images path: "))
+
 
 try: 
 
-    for root, dirnames, filenames in os.walk(dirname):
+    for root, dirnames, filenames in os.walk(config['stickers.path']):
         for filename in fnmatch.filter(filenames, '*.png'):
             matches.append(os.path.join(root, filename))
             
@@ -55,9 +50,11 @@ except IOError:
 
 #### Sticker pack creation ####
 
+stickerbot = unicode(config['tg.target'])
+
 packname = unicode(raw_input("Packname: "))
             
-sender.send_msg(stickerbot, newpack)
+sender.send_msg(stickerbot, ps.newpack)
 
 sender.send_msg(stickerbot, packname)
 
@@ -77,7 +74,7 @@ for stickers in matches:
     sender.send_document(stickerbot, unicode(stickers))
 
 
-sender.send_msg(stickerbot, publish)
+sender.send_msg(stickerbot, ps.publish)
 
 sender.send_msg(stickerbot, packname)    
 

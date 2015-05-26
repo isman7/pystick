@@ -11,6 +11,24 @@ from pylab import *
 from scipy.misc import imresize
 
 
+defaultConfig = {'tg.target': 'Sticker_Bot', 
+                 'tg.srvpub': '../tg/tg-server.pub',    
+                 'tg.Path': '../tg/bin/telegram-cli', 
+                 'tg.emoji': '24C2',
+                 'stickers.path': './images'}
+
+#### Sticker Bot Commands ####
+# You should modify to point the correct Bot name, but it is supposed to be the same. 
+
+
+
+newpack =  u'/newstickpack'
+addsticker = u'/addsticker'
+delsticker = u'/delsticker'
+ordersticker= u'/ordersticker'
+candel = u'/cancel'
+publish = u'/publish'
+
 
 def readConfig():
     
@@ -28,11 +46,12 @@ def readConfig():
             if len(option) == 2:             
                 config[option[0]] = option[1]
             
-        return config
-    
     except IOError:
-        print "Config file not found"    
-        return -1    
+        print "Config file not found. Creating default one at: ./config.txt"    
+        config = defaultConfig
+        writeConfig(config)
+        
+    return config        
 
 def writeConfig(config):
     
