@@ -11,10 +11,10 @@ from pylab import *
 from scipy.misc import imresize
 
 
-defaultConfig = {'tg.target': 'Sticker_Bot', 
+defaultConfig = {'tg.target': 'Stickers_Bot', 
                  'tg.srvpub': '../tg/tg-server.pub',    
                  'tg.Path': '../tg/bin/telegram-cli', 
-                 'tg.emoji': '24C2',
+                 #'tg.emoji': '24C2',
                  'stickers.path': './images'}
 
 #### Sticker Bot Commands ####
