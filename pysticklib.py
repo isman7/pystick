@@ -22,7 +22,7 @@ defaultConfig = {'tg.target': 'Sticker_Bot',
 
 
 
-newpack =  u'/newstickpack'
+newpack =  u'/newstickerpack'
 addsticker = u'/addsticker'
 delsticker = u'/delsticker'
 ordersticker= u'/ordersticker'
@@ -69,6 +69,8 @@ def writeConfig(config):
     
     
 def resizeFolder(folderPath):
+    
+    matches = []    
     
     try: 
         for root, dirnames, filenames in os.walk(folderPath):

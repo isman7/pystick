@@ -70,7 +70,7 @@ emoji_number = 128059
 
 for stickers in matches: 
     
-    sender.send_msg(stickerbot, unichr(emoji_number))
+    sender.send_msg(stickerbot, u'\U0001F437')
     sender.send_document(stickerbot, unicode(stickers))
 
 
